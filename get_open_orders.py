@@ -6,6 +6,7 @@ import pandas as pd
 
 from helper_functions import clean_number, generate_zsdkap_filename, update_open_mtp_excel
 
+OUTPUT_FILE_PATH = r"P:\Technisch\PLANY PRODUKCJI\PLANIŚCI\PP_TOOLS_TEMP_FILES\13_PPS_OPEN_ORDERS\OUTPUT"
 
 zsdkap_dtypes = {
     'Odbiorca materia≈Ç√≥w': 'string',
@@ -81,7 +82,7 @@ def open_orders_loop(lines, mrp_controllers, product_names, zsdkap, file_name):
             open_orders_df = collect_open_orders(zsdkap_report_name=zsdkap, mrp_controller=mrp, mat_name=prd_name)
 
             # Append data to Excel
-            open_orders_df.to_excel(f"output/{line}.xlsx", index=False)
+            open_orders_df.to_excel(f"{OUTPUT_FILE_PATH}/{line}.xlsx", index=False)
             update_open_mtp_excel(open_orders_df, file_name,f"{line}_hs", 36)
 
     except Exception as e:
@@ -94,9 +95,9 @@ def open_orders_loop(lines, mrp_controllers, product_names, zsdkap, file_name):
 def wmo_open_orders(mtp_file_name):
     zsdkap = generate_zsdkap_filename()
 
-    lines = ["P100", "M200", "M300", "M320", "M500", "M600"]
-    mrp_controllers = ['L1K', ('L1H', 'L41', 'L3H', 'L82'), ('L3H', 'L82'), 'L2H', 'LD1', 'LZ1']
-    product_names = [('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7'), ('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7', 'EFL 4', 'EFL 7'), ('R6', 'R8', 'EFL_R6', 'EFL_R8', 'EFL 6', 'EFL 8'), ('Q4', 'EFL_Q'), 'R2', ('ZI', 'KO', 'Li')]  # Product names starts with...
+    lines = ["P100", "M200", "M300", "M320", "M500", "M600", "MDA", "ASA"]
+    mrp_controllers = ['L1K', ('L1H', 'L41', 'L3H', 'L82'), ('L3H', 'L82'), 'L2H', 'LD1', 'LZ1', 'LMD', 'LAS']
+    product_names = [('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7'), ('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7', 'EFL 4', 'EFL 7'), ('R6', 'R8', 'EFL_R6', 'EFL_R8', 'EFL 6', 'EFL 8'), ('Q4', 'EFL_Q'), 'R2', ('ZI', 'KO', 'Li'), ('MDA'), ('ASA', 'ASI')]  # Product names starts with...
 
     open_orders_loop(lines, mrp_controllers, product_names, zsdkap, mtp_file_name)
 
