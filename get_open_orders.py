@@ -96,7 +96,7 @@ def wmo_open_orders(mtp_file_name):
     zsdkap = generate_zsdkap_filename()
 
     lines = ["P100", "M200", "M300", "M320", "M500", "M600", "MDA", "ASA"]
-    mrp_controllers = ['L1K', ('L1H', 'L41', 'L3H', 'L82'), ('L3H', 'L82', 'L11'), 'L2H', 'LD1', 'LZ1', 'LMD', 'LAS']
+    mrp_controllers = ['L1K', ('L1H', 'L41', 'L3H', 'L82', 'L11'), ('L3H', 'L82', 'L11'), ('L2H', 'L11'), 'LD1', 'LZ1', 'LMD', 'LAS']
     product_names = [('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7'), ('R4', 'R7', 'R3', 'R5', 'EFL_R4', 'EFL_R7', 'EFL 4', 'EFL 7'), ('R6', 'R8', 'EFL_R6', 'EFL_R8', 'EFL 6', 'EFL 8'), ('Q4', 'EFL_Q'), 'R2', ('ZI', 'KO', 'Li'), ('MDA'), ('ASA', 'ASI')]  # Product names starts with...
 
     open_orders_loop(lines, mrp_controllers, product_names, zsdkap, mtp_file_name)
@@ -121,7 +121,7 @@ def mont_open_orders(mtp_file_name):
     lines = ["WDF68K", "WDFQK", "ZRO", "QR1", "EDR"]
     mrp_controllers = [
         ('M81', 'M82', 'M8M', 'M84', 'M71', 'M72'),
-        ('MQ1', 'MQ2'),
+        ('MQ1', 'MQ2', 'MQ4', 'MNW'),
         ('MR1', 'MR2', 'MR3', 'M8M', 'MRR'),
         "MR4",
         ('MEB', 'MED', 'MEE', 'MEI', 'MEH', 'MEJ', 'MEM', 'MEN', 'MEX')
